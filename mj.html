@@ -3,6 +3,7 @@
 
 <head>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Midjourney Text-to-Image</title>
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
@@ -44,11 +45,15 @@
         .label-checkbox {
             margin-left: 0.6em;
         }
+
+        .row {
+            margin-top: 5px;
+        }
     </style>
 
 </head>
 
-<body style="background-color: #f5f5f5;font-family: 'Roboto', sans-serif;padding-bottom:150px">
+<body style="background-color: #eeeeee;font-family: 'Roboto', sans-serif;padding-bottom:150px">
     <h1 style="text-align: center; margin-bottom: 20px;">Midjourney Prompt Generator</h1>
     <div id="description" style="text-align: center; margin-bottom: 20px;">
         <p>This webapp generates a Midjourney prompt from a text input and various options. Simply enter the prompt and
@@ -58,83 +63,385 @@
     <!-- HTML form with input fields for the parameters -->
     <!-- HTML form with input fields for the parameters -->
     <form id="form" class="form" style="margin: 20px;">
-        <div class="form-group-prompt">
-            <label for="prompt">Prompt</label>
-            <p>Enter the text for the prompt here.</p>
-            <textarea class="form-control" id="prompt" name="prompt" rows="3"></textarea>
+
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="card ">
+                        <div class="card-body">
+                            <h5 class="card-title">Prompt</h5>
+                            <p class="card-text">Enter the text for the prompt here.</p>
+                            <div class="form-group-prompt">
+                                <textarea class="form-control" id="prompt" name="prompt" rows="3"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Medium</h5>
+                            <p class="card-text">Choose an option or leave it blank.
+                            </p>
+                            <div class="form-group">
+                                <select id="art-medium" class="full-text-option-select form-select">
+                                    <option value=""></option>
+                                    <option value="acrylic">Acrylic</option>
+                                    <option value="watercolor">Watercolor</option>
+                                    <option value="oil">Oil</option>
+                                    <option value="pastel">Pastel</option>
+                                    <option value="pen-ink">Pen and ink</option>
+                                    <option value="graphite">Graphite</option>
+                                    <option value="charcoal">Charcoal</option>
+                                    <option value="colored-pencil">Colored pencil</option>
+                                    <option value="marker">Marker</option>
+                                    <option value="pencil-crayon">Pencil crayon</option>
+                                    <option value="clay">Clay</option>
+                                    <option value="sculpture">Sculpture</option>
+                                    <option value="photography">Photography</option>
+                                    <option value="printmaking">Printmaking</option>
+                                    <option value="collage">Collage</option>
+                                    <option value="assemblage">Assemblage</option>
+                                    <option value="textile-art">Textile art</option>
+                                    <option value="digital-art">Digital art</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Lighting</h5>
+                            <p class="card-text">Choose a light style or leave blank.</p>
+                            <div class="form-group">
+                                <select id="lighting-options" class="full-text-option-value-select form-select w-100">
+                                    <option value=""></option>
+                                    <option value="natural-light">Natural light</option>
+                                    <option value="tungsten-light">Tungsten light</option>
+                                    <option value="fluorescent-light">Fluorescent light</option>
+                                    <option value="led-light">LED light</option>
+                                    <option value="hmi-light">HMI light</option>
+                                    <option value="kino-flo-light">Kino Flo light</option>
+                                    <option value="softbox">Softbox</option>
+                                    <option value="umbrella">Umbrella</option>
+                                    <option value="beauty-dish">Beauty dish</option>
+                                    <option value="barn-doors">Barn doors</option>
+                                    <option value="grid-spot">Grid spot</option>
+                                    <option value="gobo">Gobo</option>
+                                    <option value="reflector">Reflector</option>
+                                    <option value="silks">Silks</option>
+                                    <option value="flags">Flags</option>
+                                    <option value="bounce-board">Bounce board</option>
+                                    <option value="snoot">Snoot</option>
+                                    <option value="ring-light">Ring light</option>
+                                    <option value="china-ball">China ball</option>
+                                    <option value="lantern">Lantern</option>
+                                    <option value="cyc-light">Cyc light</option>
+                                    <option value="fresnel">Fresnel</option>
+                                    <option value="icicle-lights">Icicle lights</option>
+                                    <option value="string-lights">String lights</option>
+                                    <option value="neon-lights">Neon lights</option>
+                                    <option value="flood-light">Flood light</option>
+                                    <option value="spot-light">Spot light</option>
+                                    <option value="stage-light">Stage light</option>
+                                    <option value="work-light">Work light</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Chaos</h5>
+                            <p class="card-text">How much more varied, random, and different the results will be. Must
+                                be between 0-100.
+                                Higher values
+                                will favor more interesting and unusual generations in exchange for less reliable
+                                compositions.
+                            </p>
+                            <div class="form-group">
+                                <input type="number" class="form-control" id="chaos" name="chaos" min="0" max="100">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Stylize</h5>
+                            <p class="card-text">The stylize argument sets how strong of a 'stylization' your images
+                                have, the higher you set
+                                it, the
+                                more
+                                opinionated it will be. The default value is 2500. See below for more info.
+                            </p>
+                            <div class="form-group">
+                                <input type="number" class="form-control" id="stylize" name="stylize" min="625"
+                                    max="60000">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Seed</h5>
+                            <p class="card-text">Sets the seed, which can sometimes help keep things more steady and
+                                reproducible when trying
+                                to
+                                generate
+                                a similar prompt again. It must be a positive integer (any whole number between 0 and
+                                4294967295).
+                                If
+                                not used, a random seed will be chosen instead, behind the scenes.
+                            </p>
+                            <div class="form-group">
+                                <input type="number" class="form-control" id="seed" name="seed" min="0"
+                                    max="4294967295">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Negative Prompting (No)</h5>
+                            <p class="card-text">Negative prompting (`--no plants` would try to remove plants).
+                                Equivalent to using an
+                                advanced text
+                                weight of `::-0.5`.
+                            </p>
+                            <div class="form-group">
+                                <input type="text" class="form-control" id="no" name="no" placeholder="thing to remove">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Image Weight (IW)</h5>
+                            <p class="card-text">Sets image prompt weight relative to text weight. The default value is
+                                0.25.
+                            </p>
+                            <div class="form-group">
+                                <input type="number" class="form-control" id="iw" name="iw" min="-1" max="1" step="0.1">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Height (H)</h5>
+                            <p class="card-text">Sets the height of the image. The value must be between 256 and 2034,
+                                while keeping in mind
+                                that the
+                                maximum upscale resolution is around 3 Megapixels. These values work better as multiples
+                                of
+                                64 (or
+                                128
+                                for "--hd").
+                            </p>
+                            <div class="form-group">
+                                <input type="number" class="form-control" id="h" name="h" min="256" max="2034">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Quality</h5>
+                            <p class="card-text">How much rendering quality time you want to spend. The default value is
+                                1. Higher values cost more
+                                and
+                                lower values cost less.
+                            </p>
+                            <div class="form-group">
+                                <input type="number" class="form-control" id="quality" name="quality" min="0" max="5"
+                                    step="0.5">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Width (W)</h5>
+                            <p class="card-text">Sets the width of the image. The value must be between 256 and 2034,
+                                while keeping in mind that the
+                                maximum upscale resolution is around 3 Megapixels. These values work better as multiples
+                                of 64 (or
+                                128
+                                for "--hd").
+                            </p>
+                            <div class="form-group">
+                                <input type="number" class="form-control" id="w" name="w" min="256" max="2034">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Aspect Ratio (AR)</h5>
+                            <p class="card-text">Generates images with the desired aspect ratio. Enter the desired
+                                aspect ratio in the format "W:H",
+                                for
+                                example "16:9" for a 16:9 aspect ratio (~448x256).
+                            </p>
+                            <div class="form-group">
+                                <input type="text" class="form-control" id="ar" name="ar" placeholder="W:H">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Version</h5>
+                            <p class="card-text">Uses old algorithms 1 (which was formerly the "vibe" option, sometimes
+                                better for macro or textures)
+                                or
+                                2, the last improvement. We are at version 4 now, which you do not need to specify. So
+                                specify
+                                `--version 2` to use the previous older model, or `--version 1` for the one before.
+                            </p>
+                            <div class="form-group">
+                                <select class="form-select" id="version" name="version">
+                                    <option value=""></option>
+                                    <option value="1">1 (oldest)</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Beta</h5>
+                            <p class="card-text">Uses a new experimental algorithm. This model takes significantly
+                                longer to run and only produces 2
+                                outputs (1 for non square resolutions). It also does not work with `--hd`, `--stylize`,
+                                and `--q 5`.
+                            </p>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="beta">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-sm-6">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">HD</h5>
+                            <p class="card-text">Uses a different, older algorithm that’s potentially better for larger
+                                images, but with less
+                                consistent
+                                composition. Best for abstract and landscape prompts. This also generates images at
+                                higher
+                                resolutions
+                                without the need to upscale.
+                            </p>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="hd">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Same Seed</h5>
+                            <p class="card-text">Makes it so the seed affects all images of the resulting grid in the
+                                same way. If not used, each
+                                image in
+                                the grid will use a different "slice" of the seed, providing higher variety.
+                            </p>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="sameseed">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-sm-6">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Video</h5>
+                            <p class="card-text">Saves a progress video, which is sent to you in the ✉️-triggered DM
+                                (you must react with the envelope
+                                to
+                                get the video link). This currently does not work with upscales.
+                            </p>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="video">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Uplight</h5>
+                            <p class="card-text">Uses the "light" upscaler when selecting the U buttons. Results are
+                                then closer to the original
+                                image,
+                                with less detail added during upscale. Ideal for faces and smooth surfaces.
+                            </p>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="uplight">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+
         </div>
+
+
+
 
         <div style="display: flex;align-items: flex-end;">
 
-            <div class="form-group" style="flex: 1;padding:30px;">
-                <label for="version">Art Medium</label>
-                <p>Art Medium. Choose an option or leave it blank.</p>
-                <select id="art-medium" class="full-text-option-select form-select">
-                    <option value=""></option>
-                    <option value="acrylic">Acrylic</option>
-                    <option value="watercolor">Watercolor</option>
-                    <option value="oil">Oil</option>
-                    <option value="pastel">Pastel</option>
-                    <option value="pen-ink">Pen and ink</option>
-                    <option value="graphite">Graphite</option>
-                    <option value="charcoal">Charcoal</option>
-                    <option value="colored-pencil">Colored pencil</option>
-                    <option value="marker">Marker</option>
-                    <option value="pencil-crayon">Pencil crayon</option>
-                    <option value="clay">Clay</option>
-                    <option value="sculpture">Sculpture</option>
-                    <option value="photography">Photography</option>
-                    <option value="printmaking">Printmaking</option>
-                    <option value="collage">Collage</option>
-                    <option value="assemblage">Assemblage</option>
-                    <option value="textile-art">Textile art</option>
-                    <option value="digital-art">Digital art</option>
-                </select>
-            </div>
 
-            <div class="form-group" style="flex: 1;padding:30px;">
-                <label for="lighting-options">Lighting Options</label>
-                <p>Choose a light style or leave blank.</p>
-                <select id="lighting-options" class="full-text-option-value-select form-select w-100">
-                    <option value=""></option>
-                    <option value="natural-light">Natural light</option>
-                    <option value="tungsten-light">Tungsten light</option>
-                    <option value="fluorescent-light">Fluorescent light</option>
-                    <option value="led-light">LED light</option>
-                    <option value="hmi-light">HMI light</option>
-                    <option value="kino-flo-light">Kino Flo light</option>
-                    <option value="softbox">Softbox</option>
-                    <option value="umbrella">Umbrella</option>
-                    <option value="beauty-dish">Beauty dish</option>
-                    <option value="barn-doors">Barn doors</option>
-                    <option value="grid-spot">Grid spot</option>
-                    <option value="gobo">Gobo</option>
-                    <option value="reflector">Reflector</option>
-                    <option value="silks">Silks</option>
-                    <option value="flags">Flags</option>
-                    <option value="bounce-board">Bounce board</option>
-                    <option value="snoot">Snoot</option>
-                    <option value="ring-light">Ring light</option>
-                    <option value="china-ball">China ball</option>
-                    <option value="lantern">Lantern</option>
-                    <option value="cyc-light">Cyc light</option>
-                    <option value="fresnel">Fresnel</option>
-                    <option value="icicle-lights">Icicle lights</option>
-                    <option value="string-lights">String lights</option>
-                    <option value="neon-lights">Neon lights</option>
-                    <option value="flood-light">Flood light</option>
-                    <option value="spot-light">Spot light</option>
-                    <option value="stage-light">Stage light</option>
-                    <option value="work-light">Work light</option>
-                </select>
-            </div>
-
-            <div class="form-group" style="flex: 1;padding:30px;">
-                <label for="chaos">Chaos</label>
-                <p>How much more varied, random, and different the results will be. Must be between 0-100. Higher values
-                    will favor more interesting and unusual generations in exchange for less reliable compositions.</p>
-                <input type="number" class="form-control" id="chaos" name="chaos" min="0" max="100">
-            </div>
 
             <div class="form-group" style="flex: 1;padding:30px;">
                 <label for="stylize">Stylize</label>
