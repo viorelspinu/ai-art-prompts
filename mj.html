@@ -18,17 +18,17 @@
     <style>
         #computed-prompt-div {
             position: fixed;
-            bottom: 0;
-            left: 0;
-            right: 0;
+            bottom: 1%;
+            left: 69%;
+            right: 50%;
             z-index: 999;
-            width: 100%;
+            width: 30%;
             padding-left: 20px;
             padding-right: 20px;
             padding-bottom: 15px;
             padding-top: 15px;
-            background: #EEF;
-            border: 1px solid #AAA;
+            background: #FAFAFF;
+            border: 1px solid #33F;
         }
 
         label {
@@ -49,13 +49,12 @@
         .row {
             margin-top: 5px;
         }
-        
     </style>
 
 </head>
 
 <body style="background-color: #eeeeee;font-family: 'Roboto', sans-serif;padding-bottom:150px">
-    <h1 style="text-align: center; margin-bottom: 20px;">Midjourney Prompt Generator</h1>
+    <h1 style="text-align: center; margin-bottom: 20px;padding-top:20px">Midjourney Prompt Generator</h1>
     <div id="description" style="text-align: center; margin-bottom: 20px;">
         <p>This webapp generates a Midjourney prompt from a text input and various options. Simply enter the prompt and
             the desired options below and the app will generate the prompt for you.</p>
@@ -85,7 +84,7 @@
                     <div class="card h-100">
                         <div class="card-body">
                             <h5 class="card-title">Medium</h5>
-                            <p class="card-text">Choose an option or leave it blank.
+                            <p class="card-text">
                             </p>
                             <div class="form-group">
                                 <select id="art-medium" class="full-text-option-select form-select">
@@ -117,32 +116,21 @@
                     <div class="card h-100">
                         <div class="card-body">
                             <h5 class="card-title">Lighting</h5>
-                            <p class="card-text">Choose a light style or leave blank.</p>
+                            <p class="card-text"></p>
                             <div class="form-group">
                                 <select id="lighting-options" class="full-text-option-value-select form-select w-100">
                                     <option value=""></option>
                                     <option value="natural-light">Natural light</option>
+                                    <option value="cinematic">Cinematic lighting</option>
+                                    <option value="contrejour">Contre-jour lighting</option>
+                                    <option value="dramatic">Dramatic lighting</option>
                                     <option value="tungsten-light">Tungsten light</option>
                                     <option value="fluorescent-light">Fluorescent light</option>
-                                    <option value="led-light">LED light</option>
-                                    <option value="hmi-light">HMI light</option>
-                                    <option value="kino-flo-light">Kino Flo light</option>
-                                    <option value="softbox">Softbox</option>
                                     <option value="umbrella">Umbrella</option>
-                                    <option value="beauty-dish">Beauty dish</option>
                                     <option value="barn-doors">Barn doors</option>
                                     <option value="grid-spot">Grid spot</option>
-                                    <option value="gobo">Gobo</option>
                                     <option value="reflector">Reflector</option>
-                                    <option value="silks">Silks</option>
-                                    <option value="flags">Flags</option>
-                                    <option value="bounce-board">Bounce board</option>
-                                    <option value="snoot">Snoot</option>
-                                    <option value="ring-light">Ring light</option>
-                                    <option value="china-ball">China ball</option>
                                     <option value="lantern">Lantern</option>
-                                    <option value="cyc-light">Cyc light</option>
-                                    <option value="fresnel">Fresnel</option>
                                     <option value="icicle-lights">Icicle lights</option>
                                     <option value="string-lights">String lights</option>
                                     <option value="neon-lights">Neon lights</option>
@@ -150,6 +138,42 @@
                                     <option value="spot-light">Spot light</option>
                                     <option value="stage-light">Stage light</option>
                                     <option value="work-light">Work light</option>
+                                    <option value="atmospheric">Atmospheric lighting</option>
+                                    <option value="auroraborealis">Aurora borealis</option>
+                                    <option value="backlight">Backlight</option>
+                                    <option value="backlit">Backlit</option>
+                                    <option value="bioluminescence">Bioluminescence</option>
+                                    <option value="blacklight">Black light</option>
+                                    <option value="bright">Bright lighting</option>
+                                    <option value="campfire">Campfire lighting</option>
+                                    <option value="candlelight">Candlelight</option>
+                                    <option value="crepuscular">Crepuscular rays</option>
+                                    <option value="daylight">Daylight</option>
+                                    <option value="dusk">Dusk</option>
+                                    <option value="earlymorning">Early morning</option>
+                                    <option value="fullmoon">Full moon</option>
+                                    <option value="goldenhour">Golden hour sunlight</option>
+                                    <option value="indoor">Indoor lighting</option>
+                                    <option value="infrared">Infrared lighting</option>
+                                    <option value="laser">Laser light</option>
+                                    <option value="lateafternoon">Late afternoon</option>
+                                    <option value="moonlight">Moonlight</option>
+                                    <option value="natural">Natural light</option>
+                                    <option value="nightlight">Nightlight</option>
+                                    <option value="pink">Pink light</option>
+                                    <option value="prismatic">Prismatic lighting</option>
+                                    <option value="rainbow">Rainbow lighting</option>
+                                    <option value="red">Red light</option>
+                                    <option value="reflection">Reflection</option>
+                                    <option value="side">Side lighting</option>
+                                    <option value="stage">Stage lighting</option>
+                                    <option value="studio">Studio lighting</option>
+                                    <option value="sunset">Sunset</option>
+                                    <option value="task">Task lighting</option>
+                                    <option value="uplight">Uplight</option>
+                                    <option value="uv">UV light</option>
+                                    <option value="warm">Warm lighting</option>
+                                    <option value="white">White light</option>
                                 </select>
                             </div>
                         </div>
@@ -157,6 +181,244 @@
                 </div>
             </div>
 
+
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <h5 class="card-title">Art Movement</h5>
+                            <p class="card-text">
+                            </p>
+                            <div class="form-group">
+                                <select id="art-movement" class="full-text-option-value-select form-select w-100">
+                                    <option value=""></option>
+                                    <option>Abstract Expressionism</option>
+                                    <option>Art Deco</option>
+                                    <option>Art Nouveau</option>
+                                    <option>Baroque</option>
+                                    <option>Classicism</option>
+                                    <option>Cubism</option>
+                                    <option>Dada</option>
+                                    <option>Expressionism</option>
+                                    <option>Fauvism</option>
+                                    <option>Futurism</option>
+                                    <option>Impressionism</option>
+                                    <option>Mannerism</option>
+                                    <option>Minimalism</option>
+                                    <option>Modernism</option>
+                                    <option>Neoclassicism</option>
+                                    <option>Post-Impressionism</option>
+                                    <option>Realism</option>
+                                    <option>Rococo</option>
+                                    <option>Romanticism</option>
+                                    <option>Surrealism</option>
+                                    <option>Symbolism</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <h5 class="card-title">Painter</h5>
+                            <p class="card-text">
+                            </p>
+                            <div class="form-group">
+                                <select id="painter" class="full-text-option-select form-select w-100">
+                                    <option value=""></option>
+                                    <option value="by Vincent van Gogh">Vincent van Gogh</option>
+                                    <option value="by Claude Monet">Claude Monet</option>
+                                    <option value="by Rembrandt">Rembrandt</option>
+                                    <option value="by Paul Cézanne">Paul Cézanne</option>
+                                    <option value="by Salvador Dali">Salvador Dali</option>
+                                    <option value="by Pablo Picasso">Pablo Picasso</option>
+                                    <option value="by Henri Matisse">Henri Matisse</option>
+                                    <option value="by Frida Kahlo">Frida Kahlo</option>
+                                    <option value="by Johannes Vermeer">Johannes Vermeer</option>
+                                    <option value="by Leonardo da Vinci">Leonardo da Vinci</option>
+                                    <option value="by Michelangelo">Michelangelo</option>
+                                    <option value="by Edgar Degas">Edgar Degas</option>
+                                    <option value="by Jan Vermeer">Jan Vermeer</option>
+                                    <option value="by Pierre-Auguste Renoir">Pierre-Auguste Renoir</option>
+                                    <option value="by Gustav Klimt">Gustav Klimt</option>
+                                    <option value="by Edvard Munch">Edvard Munch</option>
+                                    <option value="by Georgia O'Keeffe">Georgia O'Keeffe</option>
+                                    <option value="by Henri de Toulouse-Lautrec">Henri de Toulouse-Lautrec</option>
+                                    <option value="by Franz Marc">Franz Marc</option>
+                                    <option value="by Giovanni Bellini">Giovanni Bellini</option>
+                                    <option value="by Hieronymus Bosch">Hieronymus Bosch</option>
+                                    <option value="by Grant Wood">Grant Wood</option>
+                                    <option value="by Edward Hopper">Edward Hopper</option>
+                                    <option value="by Mary Cassatt">Mary Cassatt</option>
+                                    <option value="by Albrecht Dürer">Albrecht Dürer</option>
+                                    <option value="by Paul Gauguin">Paul Gauguin</option>
+                                    <option value="by John Singer Sargent">John Singer Sargent</option>
+                                    <option value="by Titian">Titian</option>
+                                    <option value="by Caravaggio">Caravaggio</option>
+                                    <option value="by Francisco Goya">Francisco Goya</option>
+                                    <option value="by John Constable">John Constable</option>
+                                    <option value="by Caspar David Friedrich">Caspar David Friedrich</option>
+                                    <option value="by William Morris">William Morris</option>
+                                    <option value="by Pierre Bonnard">Pierre Bonnard</option>
+                                    <option value="by Camille Pissarro">Camille Pissarro</option>
+                                    <option value="by Paul Klee">Paul Klee</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <h5 class="card-title">Scene type</h5>
+                            <p class="card-text">
+                            </p>
+                            <div class="form-group">
+                                <select id="scene" class="full-text-option-value-select form-select w-100">
+                                    <option value=""></option>
+                                    <option value="aerial">Aerial shot scene</option>
+                                    <option value="animated">Animated scene</option>
+                                    <option value="character">Character shot scene</option>
+                                    <option value="cutaway">Cutaway shot scene</option>
+                                    <option value="documentary">Documentary scene</option>
+                                    <option value="dramatic">Dramatic scene</option>
+                                    <option value="fantasy">Fantasy scene</option>
+                                    <option value="horror">Horror scene</option>
+                                    <option value="landscape">Landscape shot scene</option>
+                                    <option value="music-video">Music video scene</option>
+                                    <option value="mystery">Mystery scene</option>
+                                    <option value="nature">Nature scene</option>
+                                    <option value="news">News scene</option>
+                                    <option value="romance">Romance scene</option>
+                                    <option value="sci-fi">Science fiction scene</option>
+                                    <option value="sports">Sports scene</option>
+                                    <option value="talk-show">Talk show scene</option>
+                                    <option value="war">War scene</option>
+                                    <option value="western">Western scene</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <h5 class="card-title">Material</h5>
+                            <p class="card-text">
+                            </p>
+                            <div class="form-group">
+                                <select id="material" class="full-text-option-value-select form-select w-100">
+                                    <option value=""></option>
+                                    <option value="acrylic">Made of acrylic</option>
+                                    <option value="bronze">Made of bronze</option>
+                                    <option value="ceramic">Made of ceramic</option>
+                                    <option value="copper">Made of copper</option>
+                                    <option value="cotton">Made of cotton</option>
+                                    <option value="leather">Made of leather</option>
+                                    <option value="linen">Made of linen</option>
+                                    <option value="gold">Made of gold</option>
+                                    <option value="iron">Made of iron</option>
+                                    <option value="marble">Made of marble</option>
+                                    <option value="nylon">Made of nylon</option>
+                                    <option value="paper">Made of paper</option>
+                                    <option value="plastic">Made of plastic</option>
+                                    <option value="rubber">Made of rubber</option>
+                                    <option value="silver">Made of silver</option>
+                                    <option value="steel">Made of steel</option>
+                                    <option value="stone">Made of stone</option>
+                                    <option value="silk">Made of silk</option>
+                                    <option value="wool">Made of wool</option>
+                                    <option value="bamboo">Made of bamboo</option>
+                                    <option value="glass">Made of glass</option>
+                                    <option value="grass">Made of grass</option>
+                                    <option value="ice">Made of ice</option>
+                                    <option value="wood">Made of wood</option>
+                                    <option value="clay">Made of clay</option>
+                                    <option value="concrete">Made of concrete</option>
+                                    <option value="crystal">Made of crystal</option>
+                                    <option value="feather">Made of feather</option>
+                                    <option value="jute">Made of jute</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <h5 class="card-title">Camera</h5>
+                            <p class="card-text">
+                            </p>
+                            <div class="form-group">
+                                <select id="camera" class="full-text-option-value-select form-select w-100">
+                                    <option value=""></option>
+                                    <option value="dslr">DSLR camera</option>
+                                    <option value="mirrorless">Mirrorless camera</option>
+                                    <option value="point-and-shoot">Point-and-shoot camera</option>
+                                    <option value="film">Film camera</option>
+                                    <option value="medium-format">Medium format camera</option>
+                                    <option value="large-format">Large format camera</option>
+                                    <option value="disposable">Disposable camera</option>
+                                    <option value="instant">Instant camera</option>
+                                    <option value="rangefinder">Rangefinder camera</option>
+                                    <option value="action">Action camera</option>
+                                    <option value="drone">Drone camera</option>
+                                    <option value="smartphone">Smartphone camera</option>
+                                    <option value="gopro">Go-Pro camera</option>
+                                    <option value="trail">Trail camera</option>
+                                    <option value="security">Security camera</option>
+                                    <option value="underwater">Underwater camera</option>
+                                    <option value="toy">Toy camera</option>
+                                    <option value="pinhole">Pinhole camera</option>
+                                    <option value="camera-obscura">Camera obscura</option>
+                                    <option value="holga">Holga camera</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <h5 class="card-title">Filter</h5>
+                            <p class="card-text">
+                            </p>
+                            <div class="form-group">
+                                <select id="filter" class="full-text-option-value-select form-select w-100">
+                                    <option value=""></option>
+                                    <option value="polarizing">Polarizing filter</option>
+                                    <option value="neutral-density">Neutral density filter</option>
+                                    <option value="graduated-neutral-density">Graduated neutral density filter</option>
+                                    <option value="uv">UV filter</option>
+                                    <option value="fluorescent">Fluorescent filter</option>
+                                    <option value="warming">Warming filter</option>
+                                    <option value="cooling">Cooling filter</option>
+                                    <option value="red">Red filter</option>
+                                    <option value="orange">Orange filter</option>
+                                    <option value="yellow">Yellow filter</option>
+                                    <option value="green">Green filter</option>
+                                    <option value="blue">Blue filter</option>
+                                    <option value="purple">Purple filter</option>
+                                    <option value="pink">Pink filter</option>
+                                    <option value="infrared">Infrared filter</option>
+                                    <option value="star">Star filter</option>
+                                    <option value="soft-focus">Soft focus filter</option>
+                                    <option value="vignette">Vignette filter</option>
+                                    <option value="diffuser">Diffuser filter</option>
+                                    <option value="fog">Fog filter</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
             <div class="row">
                 <div class="col-sm-6">
@@ -446,7 +708,7 @@
         <textarea id="computed-prompt" readonly="true" class="form-control" rows="3"></textarea>
 
         <!-- "Copy to clipboard" button -->
-        <button id="copy-button" class="btn btn-primary">Copy to clipboard</button>
+        <button id="copy-button" class="btn btn-primary float-right" style="margin-top:3px">Copy to clipboard</button>
     </div>
     <!-- JavaScript code to handle the input fields and update the prompt string -->
     <script>
