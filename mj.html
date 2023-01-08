@@ -49,6 +49,10 @@
         .row {
             margin-top: 5px;
         }
+
+        a{
+            color:#33F;
+        }
     </style>
 
 </head>
@@ -58,6 +62,28 @@
     <div id="description" style="text-align: center; margin-bottom: 20px;">
         <p>This webapp generates a Midjourney prompt from a text input and various options. Simply enter the prompt and
             the desired options below and the app will generate the prompt for you.</p>
+    </div>
+
+    <div class="alert alert-info" role="alert" style="margin-left:10%;margin-right:10%;text-align: center;">
+        This page is the result of an experiment I conducted. I have copy pasted the Midjourney <a
+            href='https://midjourney.gitbook.io/docs/user-manual#parameters-to-imagine' target="_blank">user manual</a>
+        to <a href='https://chat.openai.com/chat' target="_blank">ChatGPT</a> and asked it to create an webapp that
+        allows
+        the user to input all the various parameters specified in the user manual I've provided. It did an excelent job.
+        Later on, I decided to add more options, still via ChatGPT. For example, I've asked it to create a HTML input
+        select element with the top known 30 painters and simply copy pasted the HTML to the IDE. Here is my blog
+        post which describes how I did it - <a
+            href="https://www.viorelspinu.com/2022/12/chatgpt-builds-frontend-for-generating.html">chatgpt-builds-frontend-for-generating.html</a>
+    </div>
+
+    <div class="alert alert-warning" role="alert" style="margin-left:10%;margin-right:10%;text-align: center;">
+        There is no server component for this application. Your prompt and settings are not stored, everything is
+        generated locally in your browser. Feel free to check the source code <a
+            href="https://github.com/viorelspinu/ai-art-prompts/blob/gh-pages/mj.html">on github</a>. If you want, feel
+        free to run this
+        application directly from the <a
+            href="https://htmlpreview.github.io/?https://github.com/viorelspinu/ai-art-prompts/blob/gh-pages/mj.html"
+            target="_blank">github page</a> and use the view source button to inspect what it does.
     </div>
 
     <!-- HTML form with input fields for the parameters -->
@@ -274,6 +300,77 @@
                 <div class="col-sm-6">
                     <div class="card h-100">
                         <div class="card-body">
+                            <h5 class="card-title">Rendering engine</h5>
+                            <p class="card-text">
+                            </p>
+                            <div class="form-group">
+                                <select id="rendering-engine" class="full-text-option-value-select form-select w-100">
+                                    <option value=""></option>
+                                    <option value="unreal">Unreal Engine</option>
+                                    <option value="unity">Unity</option>
+                                    <option value="cryengine">CryEngine</option>
+                                    <option value="source">Source</option>
+                                    <option value="havok">Havok</option>
+                                    <option value="gamemaker">GameMaker</option>
+                                    <option value="frostbite">Frostbite</option>
+                                    <option value="renderman">RenderMan</option>
+                                    <option value="mudbox">Mudbox</option>
+                                    <option value="blender">Blender</option>
+                                    <option value="3ds-max">3ds Max</option>
+                                    <option value="maya">Maya</option>
+                                    <option value="cinema-4d">Cinema 4D</option>
+                                    <option value="houdini">Houdini</option>
+                                    <option value="arnold">Arnold</option>
+                                    <option value="v-ray">V-Ray</option>
+                                    <option value="keyshot">Keyshot</option>
+                                    <option value="modo">Modo</option>
+                                    <option value="zbrush">ZBrush</option>
+                                    <option value="substance-designer">Substance Designer</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <h5 class="card-title">Perspective</h5>
+                            <p class="card-text">
+                            </p>
+                            <div class="form-group">
+                                <select id="perspctive" class="full-text-option-value-select form-select w-100">
+                                    <option value=""></option>
+                                    <option value="aerial">Aerial perspective</option>
+                                    <option value="atmospheric">Atmospheric perspective</option>
+                                    <option value="bird's-eye">Bird's-eye perspective</option>
+                                    <option value="close-up">Close-up perspective</option>
+                                    <option value="dutch-angle">Dutch angle perspective</option>
+                                    <option value="fish-eye">Fish-eye perspective</option>
+                                    <option value="high-angle">High angle perspective</option>
+                                    <option value="low-angle">Low angle perspective</option>
+                                    <option value="macro">Macro perspective</option>
+                                    <option value="normal">Normal perspective</option>
+                                    <option value="overhead">Overhead perspective</option>
+                                    <option value="panoramic">Panoramic perspective</option>
+                                    <option value="pov">Point-of-view perspective</option>
+                                    <option value="rising-angle">Rising angle perspective</option>
+                                    <option value="rule-of-thirds">Rule of thirds perspective</option>
+                                    <option value="side-angle">Side angle perspective</option>
+                                    <option value="slanted-angle">Slanted angle perspective</option>
+                                    <option value="top-down">Top-down perspective</option>
+                                    <option value="trompe-l'œil">Trompe-l'œil perspective</option>
+                                    <option value="worm's-eye">Worm's-eye perspective</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="card h-100">
+                        <div class="card-body">
                             <h5 class="card-title">Scene type</h5>
                             <p class="card-text">
                             </p>
@@ -419,6 +516,8 @@
                     </div>
                 </div>
             </div>
+
+
 
             <div class="row">
                 <div class="col-sm-6">
