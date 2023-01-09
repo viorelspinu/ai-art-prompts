@@ -832,9 +832,9 @@
                     }
                 } else if (element.id !== 'computed-prompt' && element.id !== 'prompt' && element.value) {
                     if (element.classList.contains('full-text-option-select')) {
-                        command += ` ${element.value}`;
+                        command += `, ${element.value}`;
                     } else if (element.classList.contains('full-text-option-value-select')) {
-                        command += ` ${element.options[element.selectedIndex].text}`;
+                        command += `, ${element.options[element.selectedIndex].text}`;
                     } else {
                         command += ` --${element.name} ${element.value}`;
                     }
