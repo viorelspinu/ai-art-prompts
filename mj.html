@@ -50,15 +50,19 @@
             margin-top: 5px;
         }
 
-        a{
-            color:#33F;
+        a {
+            color: #33F;
+        }
+
+        .form-check-label {
+            font-weight: normal;
         }
     </style>
 
 </head>
 
 <body style="background-color: #eeeeee;font-family: 'Roboto', sans-serif;padding-bottom:150px">
-    
+
     <div class="alert alert-info" role="alert" style="text-align: center;">
         This page is the result of an experiment I conducted. I have copy pasted the Midjourney <a
             href='https://midjourney.gitbook.io/docs/user-manual#parameters-to-imagine' target="_blank">user manual</a>
@@ -81,14 +85,14 @@
             target="_blank">github page</a> and use the view source button to inspect what it does.
     </div>
 
-    
+
     <h1 style="text-align: center; margin-bottom: 20px;padding-top:20px">Midjourney Prompt Generator</h1>
     <div id="description" style="text-align: center; margin-bottom: 20px;">
         <p>This webapp generates a Midjourney prompt from a text input and various options. Simply enter the prompt and
             the desired options below and the app will generate the prompt for you.</p>
     </div>
 
-    
+
     <!-- HTML form with input fields for the parameters -->
     <!-- HTML form with input fields for the parameters -->
     <form id="form" class="form" style="margin: 20px;">
@@ -254,45 +258,221 @@
                             <p class="card-text">
                             </p>
                             <div class="form-group">
-                                <select id="painter" class="full-text-option-select form-select w-100">
-                                    <option value=""></option>
-                                    <option value="by Vincent van Gogh">Vincent van Gogh</option>
-                                    <option value="by Claude Monet">Claude Monet</option>
-                                    <option value="by Rembrandt">Rembrandt</option>
-                                    <option value="by Paul Cézanne">Paul Cézanne</option>
-                                    <option value="by Salvador Dali">Salvador Dali</option>
-                                    <option value="by Pablo Picasso">Pablo Picasso</option>
-                                    <option value="by Henri Matisse">Henri Matisse</option>
-                                    <option value="by Frida Kahlo">Frida Kahlo</option>
-                                    <option value="by Johannes Vermeer">Johannes Vermeer</option>
-                                    <option value="by Leonardo da Vinci">Leonardo da Vinci</option>
-                                    <option value="by Michelangelo">Michelangelo</option>
-                                    <option value="by Edgar Degas">Edgar Degas</option>
-                                    <option value="by Jan Vermeer">Jan Vermeer</option>
-                                    <option value="by Pierre-Auguste Renoir">Pierre-Auguste Renoir</option>
-                                    <option value="by Gustav Klimt">Gustav Klimt</option>
-                                    <option value="by Edvard Munch">Edvard Munch</option>
-                                    <option value="by Georgia O'Keeffe">Georgia O'Keeffe</option>
-                                    <option value="by Henri de Toulouse-Lautrec">Henri de Toulouse-Lautrec</option>
-                                    <option value="by Franz Marc">Franz Marc</option>
-                                    <option value="by Giovanni Bellini">Giovanni Bellini</option>
-                                    <option value="by Hieronymus Bosch">Hieronymus Bosch</option>
-                                    <option value="by Grant Wood">Grant Wood</option>
-                                    <option value="by Edward Hopper">Edward Hopper</option>
-                                    <option value="by Mary Cassatt">Mary Cassatt</option>
-                                    <option value="by Albrecht Dürer">Albrecht Dürer</option>
-                                    <option value="by Paul Gauguin">Paul Gauguin</option>
-                                    <option value="by John Singer Sargent">John Singer Sargent</option>
-                                    <option value="by Titian">Titian</option>
-                                    <option value="by Caravaggio">Caravaggio</option>
-                                    <option value="by Francisco Goya">Francisco Goya</option>
-                                    <option value="by John Constable">John Constable</option>
-                                    <option value="by Caspar David Friedrich">Caspar David Friedrich</option>
-                                    <option value="by William Morris">William Morris</option>
-                                    <option value="by Pierre Bonnard">Pierre Bonnard</option>
-                                    <option value="by Camille Pissarro">Camille Pissarro</option>
-                                    <option value="by Paul Klee">Paul Klee</option>
-                                </select>
+
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input checkbox-value" type="checkbox"
+                                        id="painter-vincent-van-gogh" value="by Vincent van Gogh">
+                                    <label class="form-check-label" for="painter-vincent-van-gogh">Vincent van
+                                        Gogh</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input checkbox-value" type="checkbox"
+                                        id="painter-claude-monet" value="by Claude Monet">
+                                    <label class="form-check-label" for="painter-claude-monet">Claude Monet</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input checkbox-value" type="checkbox"
+                                        id="painter-rembrandt" value="by Rembrandt">
+                                    <label class="form-check-label" for="painter-rembrandt">Rembrandt</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input checkbox-value" type="checkbox"
+                                        id="painter-paul-cezanne" value="by Paul Cézanne">
+                                    <label class="form-check-label" for="painter-paul-cezanne">Paul Cézanne</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input checkbox-value" type="checkbox"
+                                        id="painter-salvador-dali" value="by Salvador Dali">
+                                    <label class="form-check-label" for="painter-salvador-dali">Salvador
+                                        Dali</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input checkbox-value" type="checkbox"
+                                        id="painter-pablo-picasso" value="by Pablo Picasso">
+                                    <label class="form-check-label" for="painter-pablo-picasso">Pablo
+                                        Picasso</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input checkbox-value" type="checkbox"
+                                        id="painter-henri-matisse" value="by Henri Matisse">
+                                    <label class="form-check-label" for="painter-henri-matisse">Henri
+                                        Matisse</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input checkbox-value" type="checkbox"
+                                        id="painter-frida-kahlo" value="by Frida Kahlo">
+                                    <label class="form-check-label" for="painter-frida-kahlo">Frida Kahlo</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input checkbox-value" type="checkbox" id="painter-"
+                                        value="by Frida Kahlo">
+                                    <label class="form-check-label" for="painter-frida-kahlo">Frida Kahlo</label>
+                                </div>
+                                <div class="form-check form-check-inline checkbox-value">
+                                    <input class="form-check-input" type="checkbox" id="painter-johannes-vermeer"
+                                        value="by Johannes Vermeer">
+                                    <label class="form-check-label" for="painter-johannes-vermeer">Johannes
+                                        Vermeer</label>
+                                </div>
+                                <div class="form-check form-check-inline checkbox-value">
+                                    <input class="form-check-input" type="checkbox" id="painter-leonardo-da-vinci"
+                                        value="by Leonardo da Vinci">
+                                    <label class="form-check-label" for="painter-leonardo-da-vinci">Leonardo da
+                                        Vinci</label>
+                                </div>
+                                <div class="collapse" id="collapsePainters">
+                                    <div class="form-check form-check-inline checkbox-value">
+                                        <input class="form-check-input" type="checkbox" id="painter-michelangelo"
+                                            value="by Michelangelo">
+                                        <label class="form-check-label" for="painter-michelangelo">Michelangelo</label>
+                                    </div>
+                                    <div class="form-check form-check-inline checkbox-value">
+                                        <input class="form-check-input" type="checkbox" id="painter-edgar-degas"
+                                            value="by Edgar Degas">
+                                        <label class="form-check-label" for="painter-edgar-degas">Edgar Degas</label>
+                                    </div>
+                                    <div class="form-check form-check-inline checkbox-value">
+                                        <input class="form-check-input" type="checkbox" id="painter-jan-vermeer"
+                                            value="by Jan Vermeer">
+                                        <label class="form-check-label" for="painter-jan-vermeer">Jan Vermeer</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input checkbox-value" type="checkbox"
+                                            id="painter-pierre-auguste-renoir" value="by Pierre-Auguste Renoir">
+                                        <label class="form-check-label"
+                                            for="painter-pierre-auguste-renoir">Pierre-Auguste
+                                            Renoir</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input checkbox-value" type="checkbox"
+                                            id="painter-gustav-klimt" value="by Gustav Klimt">
+                                        <label class="form-check-label" for="painter-gustav-klimt">Gustav Klimt</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input checkbox-value" type="checkbox"
+                                            id="painter-edvard-munch" value="by Edvard Munch">
+                                        <label class="form-check-label" for="painter-edvard-munch">Edvard Munch</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input checkbox-value" type="checkbox"
+                                            id="painter-georgia-okeeffe" value="by Georgia O'Keeffe">
+                                        <label class="form-check-label" for="painter-georgia-okeeffe">Georgia
+                                            O'Keeffe</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input checkbox-value" type="checkbox"
+                                            id="painter-henri-de-toulouse-lautrec" value="by Henri de Toulouse-Lautrec">
+                                        <label class="form-check-label" for="painter-henri-de-toulouse-lautrec">Henri de
+                                            Toulouse-Lautrec</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input checkbox-value" type="checkbox"
+                                            id="painter-franz-marc" value="by Franz Marc">
+                                        <label class="form-check-label" for="painter-franz-marc">Franz Marc</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input checkbox-value" type="checkbox"
+                                            id="painter-giovanni-bellini" value="by Giovanni Bellini">
+                                        <label class="form-check-label" for="painter-giovanni-bellini">Giovanni
+                                            Bellini</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input checkbox-value" type="checkbox"
+                                            id="painter-hieronymus-bosch" value="by Hieronymus Bosch">
+                                        <label class="form-check-label" for="painter-hieronymus-bosch">Hieronymus
+                                            Bosch</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input checkbox-value" type="checkbox"
+                                            id="painter-grant-wood" value="by Grant Wood">
+                                        <label class="form-check-label" for="painter-grant-wood">Grant Wood</label>
+                                    </div>
+                                    <div class="form-check form-check-inline checkbox-value">
+                                        <input class="form-check-input" type="checkbox" id="painter-edward-hopper"
+                                            value="by Edward Hopper">
+                                        <label class="form-check-label" for="painter-edward-hopper">Edward
+                                            Hopper</label>
+                                    </div>
+                                    <div class="form-check form-check-inline checkbox-value">
+                                        <input class="form-check-input" type="checkbox" id="painter-mary-cassatt"
+                                            value="by Mary Cassatt">
+                                        <label class="form-check-label" for="painter-mary-cassatt">Mary Cassatt</label>
+                                    </div>
+                                    <div class="form-check form-check-inline checkbox-value">
+                                        <input class="form-check-input" type="checkbox" id="painter-albrecht-durer"
+                                            value="by Albrecht Dürer">
+                                        <label class="form-check-label" for="painter-albrecht-durer">Albrecht
+                                            Dürer</label>
+                                    </div>
+                                    <div class="form-check form-check-inline checkbox-value">
+                                        <input class="form-check-input" type="checkbox" id="painter-paul-gauguin"
+                                            value="by Paul Gauguin">
+                                        <label class="form-check-label" for="painter-paul-gauguin">Paul Gauguin</label>
+                                    </div>
+                                    <div class="form-check form-check-inline checkbox-value">
+                                        <input class="form-check-input" type="checkbox" id="painter-john-singer-sargent"
+                                            value="by John Singer Sargent">
+                                        <label class="form-check-label" for="painter-john-singer-sargent">John Singer
+                                            Sargent</label>
+                                    </div>
+                                    <div class="form-check form-check-inline checkbox-value">
+                                        <input class="form-check-input" type="checkbox" id="painter-titian"
+                                            value="by Titian">
+                                        <label class="form-check-label" for="painter-titian">Titian</label>
+                                    </div>
+                                    <div class="form-check form-check-inline checkbox-value">
+                                        <input class="form-check-input" type="checkbox" id="painter-caravaggio"
+                                            value="by Caravaggio">
+                                        <label class="form-check-label" for="painter-caravaggio">Caravaggio</label>
+                                    </div>
+                                    <div class="form-check form-check-inline checkbox-value">
+                                        <input class="form-check-input" type="checkbox" id="painter-francisco-goya"
+                                            value="by Francisco Goya">
+                                        <label class="form-check-label" for="painter-francisco-goya">Francisco
+                                            Goya</label>
+                                    </div>
+                                    <div class="form-check form-check-inline checkbox-value">
+                                        <input class="form-check-input" type="checkbox" id="painter-john-constable"
+                                            value="by John Constable">
+                                        <label class="form-check-label" for="painter-john-constable">John
+                                            Constable</label>
+                                    </div>
+                                    <div class="form-check form-check-inline checkbox-value">
+                                        <input class="form-check-input" type="checkbox"
+                                            id="painter-caspar-david-friedrich" value="by Caspar David Friedrich">
+                                        <label class="form-check-label" for="painter-caspar-david-friedrich">Caspar
+                                            David
+                                            Friedrich</label>
+                                    </div>
+                                    <div class="form-check form-check-inline checkbox-value">
+                                        <input class="form-check-input" type="checkbox" id="painter-william-morris"
+                                            value="by William Morris">
+                                        <label class="form-check-label" for="painter-william-morris">William
+                                            Morris</label>
+                                    </div>
+                                    <div class="form-check form-check-inline checkbox-value">
+                                        <input class="form-check-input" type="checkbox" id="painter-pierre-bonnard"
+                                            value="by Pierre Bonnard">
+                                        <label class="form-check-label" for="painter-pierre-bonnard">Pierre
+                                            Bonnard</label>
+                                    </div>
+                                    <div class="form-check form-check-inline checkbox-value">
+                                        <input class="form-check-input" type="checkbox" id="painter-camille-pissarro"
+                                            value="by Camille Pissarro">
+                                        <label class="form-check-label" for="painter-camille-pissarro">Camille
+                                            Pissarro</label>
+                                    </div>
+                                    <div class="form-check form-check-inline checkbox-value">
+                                        <input class="form-check-input" type="checkbox" id="painter-paul-klee"
+                                            value="by Paul Klee">
+                                        <label class="form-check-label" for="painter-paul-klee">Paul Klee</label>
+                                    </div>
+                                </div>
+                                <a class="btn btn-link" data-bs-toggle="collapse" href="#collapsePainters" role="button"
+                                    aria-expanded="false" aria-controls="collapsePainters">
+                                    Show All
+                                </a>
+
                             </div>
                         </div>
                     </div>
@@ -828,7 +1008,11 @@
             formElements.forEach(element => {
                 if (element.type === 'checkbox') {
                     if (element.checked) {
-                        command += ` --${element.id}`;
+                        if (element.classList.contains('checkbox-value')) {
+                            command += `, ${element.value}`;
+                        } else {
+                            command += ` --${element.id}`;
+                        }
                     }
                 } else if (element.id !== 'computed-prompt' && element.id !== 'prompt' && element.value) {
                     if (element.classList.contains('full-text-option-select')) {
