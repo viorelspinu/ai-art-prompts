@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+        integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('.parent-node').click(function () {
+                $(this).nextUntil('.parent-node').slideToggle();
+                $(this).find('i').toggleClass('fa-arrow-down');
+            });
+        });
+        function filterNodes() {
+            // Get the search input value
+            var searchValue = document.getElementById("searchInput").value.toLowerCase();
+            // Get all parent and child nodes
+            var parentNodes = document.getElementsByClassName("parent-node");
+            var childNodes = document.getElementsByClassName("child-node");
+
+            // check if the search value is empty 
+            if (searchValue.length === 0) {
+                for (var i = 0; i < parentNodes.length; i++) {
+                    var parentNode = parentNodes[i];
+                    parentNode.style.display = "block";
+                }
+                for (var i = 0; i < childNodes.length; i++) {
+                    var childNode = childNodes[i];
+                    childNode.style.display = "none";
+                }
+            } else {
+                // Loop through all parent and child nodes
+                for (var i = 0; i < parentNodes.length; i++) {
+                    var parentNode = parentNodes[i];
+                    var parentText = parentNode.textContent.toLowerCase();
+                    // Check if the parent node text contains the search value
+                    if (parentText.indexOf(searchValue) > -1) {
+                        parentNode.style.display = "block";
+                    } else {
+                        parentNode.style.display = "none";
+                    }
+                }
+                for (var i = 0; i < childNodes.length; i++) {
+                    var childNode = childNodes[i];
+                    var childText = childNode.textContent.toLowerCase();
+                    // Check if the child node text contains the search value
+                    if (childText.indexOf(searchValue) > -1) {
+                        childNode.style.display = "block";
+                        $(childNode).prevAll('.parent-node').first().show();
+                    } else {
+                        childNode.style.display = "none";
+                    }
+                }
+            }
+            for (var i = 0; i < parentNodes.length; i++) {
+                var parentNode = parentNodes[i];
+                var parentText = parentNode.textContent.toLowerCase();
+                console.log(parentText + $(parentNode).nextUntil('.parent-node').filter(':visible').length);
+                if ($(parentNode).nextUntil('.parent-node').filter(':visible').length > 0) {
+                    $(parentNode).find('i').hide();
+                } else {
+                    $(parentNode).find('i').show();
+                }
+            }
+
+        }
+
+
+    </script>
+
+
+
+    <style>
+        .parent-node {
+            font-size: 1.5em;
+            cursor: pointer;
+            border-bottom: 1px solid #ccc;
+            padding: 10px;
+            background-color: #007bff;
+            color: white;
+        }
+
+        .parent-node:hover {
+            background-color: #0069d9;
+        }
+
+        .parent-node:active {
+            background-color: #0062cc;
+        }
+
+        .child-node {
+            font-size: 1.2em;
+            padding: 10px;
+            background-color: #f9f9f9;
+            border-bottom: 1px solid #ccc;
+            display: none;
+        }
+
+        .fa-arrow-right {
+            display: none;
+        }
+
+        .search-container {
+            display: flex;
+            align-items: center;
+            margin-top: 20px;
+        }
+
+        #searchInput {
+            padding: 12px 20px;
+            margin-right: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        #searchInput:focus {
+            border-color: #007bff;
+            outline: none;
+        }
+    </style>
+
+
+
+</head>
+
+<body>
+    <div class="search-container">
+        <input type="text" id="searchInput" placeholder="Search..." oninput="filterNodes()">
+    </div>
+
+    <div class="container">
+        <div class="parent-node">
+            <i class="fas fa-arrow-down"></i>
+            Parent Node 1
+        </div>
+        <div class="child-node">Child Node 1</div>
+        <div class="child-node">Child Node 2</div>
+        <div class="parent-node">
+            <i class="fas fa-arrow-down"></i>
+            Parent Node 2
+        </div>
+        <div class="child-node">Child Node 3</div>
+        <div class="child-node">Child Node 4</div>
+    </div>
+    <script src="https://kit.fontawesome.com/7637634443.js" crossorigin="anonymous"></script>
+</body>
+
+</html>
