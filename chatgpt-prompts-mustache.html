@@ -22,12 +22,16 @@
         ]
 
         data.forEach(data => {
+            data.visible = true;
             data.expanded = false;
+            data.prompts.forEach(prompt => prompt.visible = false);
         })
 
-        function toggleChildren(node) {          
-            data[node.id].expanded = !data[node.id].expanded;
-            render(data);
+        function toggleChildren(node) {
+            var newVisibleState = !data[node.id].expanded;
+            data[node.id].expanded = newVisibleState;
+            data[node.id].prompts.forEach(prompt => prompt.visible = newVisibleState);
+            render();
         }
 
         function render() {
@@ -39,12 +43,18 @@
         function filterNodes() {
             var searchValue = document.getElementById("searchInput").value.toLowerCase();
 
-            var filteredNodesList = data.filter(node => {
-                return node.name.toLowerCase().indexOf(searchValue) > -1;
+            data.forEach(category => {
+                category.visible = false;
+                category.prompts.forEach(prompt => {
+                    prompt.visible = prompt.name.toLowerCase().indexOf(searchValue) > -1;
+                    if (prompt.visible) {
+                        category.visible = true;
+                        category.expanded = true;
+                    }
+                })
             });
 
-            filteredNodesList.forEach(node => node.display = "block");
-            render(filteredNodesList);
+            render();
         }
     </script>
 
@@ -86,29 +96,29 @@
         #searchInput {
             padding: 12px 20px;
             margin-right: 20px;
-            border: none;
+            border: 1px solid #0092dd;
             border-radius: 4px;
+            margin-bottom: 10px;
+            width: 50em;
         }
     </style>
 </head>
 
-<body>
+<body style='padding:20px'>
     <div class="search-container">
         <input type="text" id="searchInput" onkeyup="filterNodes()" placeholder="Search for a node...">
     </div>
     <div id="node-container"></div>
     <script id="node-template" type="text/template">
         {{#nodes}}
-            <div id="{{id}}" class="parent-node" onclick="toggleChildren(this)">
+            <div id="{{id}}" class="parent-node" style="display:{{#visible}}block{{/visible}} {{^visible}}none{{/visible}}" onclick="toggleChildren(this)">
                 <i class="fa fa-arrow-right"></i> {{name}}
             </div>
-            {{#expanded}}
-                {{#prompts}}
-                    <div class="child-node">
-                        <i class="fa fa-arrow-right"></i> {{name}}
-                    </div>
-                {{/prompts}}
-            {{/expanded}}
+            {{#prompts}}
+                <div class="child-node" style="display:{{#visible}}block{{/visible}} {{^visible}}none{{/visible}}">
+                    <i class="fa fa-arrow-right"></i> {{name}}
+                </div>
+            {{/prompts}}
         {{/nodes}}
     </script>
     <script>
