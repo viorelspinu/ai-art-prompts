@@ -6,25 +6,29 @@
         integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/3.0.1/mustache.min.js"></script>
+    <script src="prompts.js"></script>
     <script>
-        let data = [
-            {
-                id: 0,
-                name: "Parent 1", "prompts": [{ name: "Child 1" },
-                { name: "Child 2" }]
-            },
-            {
-                id: 1,
-                name: "Parent 2", "prompts": [
-                    { name: "Child 3" },
-                    { name: "Child 4" },]
-            },
-        ]
+        let data = [];
+        var i = 0;
+        prompts.forEach(prompt => {
+            prompt['id'] = i;
+            prompt.expanded = false;
+            i++;
+            var existing_category = data.find(d => d['name'] == prompt['category']);
+            if (existing_category) {
+                existing_category['prompts'].push(prompt);
+            }
+            else {
+                var category = { id: data.length, name: prompt.category, prompts: [prompt] }
+                data.push(category);
+            }
+        })
 
         data.forEach(data => {
             data.visible = true;
             data.expanded = false;
             data.prompts.forEach(prompt => prompt.visible = false);
+            data.count = data['prompts'].length;
         })
 
         function toggleChildren(node) {
@@ -43,17 +47,38 @@
         function filterNodes() {
             var searchValue = document.getElementById("searchInput").value.toLowerCase();
 
+            if (searchValue) {
+                data.forEach(category => {
+                    category.visible = false;
+                    category.prompts.forEach(prompt => {
+                        prompt.visible = prompt.name.toLowerCase().indexOf(searchValue) > -1;
+                        if (prompt.visible) {
+                            category.visible = true;
+                            category.expanded = true;
+                        }
+                    })
+                });
+            } else {
+                data.forEach(category => {
+                    category.expanded = false;
+                    category.visible = true;
+                    category.prompts.forEach(prompt => {
+                        prompt.visible = false;
+                    })
+                })
+            }
+
+            render();
+        }
+
+        function toggleText(promptElement) {
             data.forEach(category => {
-                category.visible = false;
-                category.prompts.forEach(prompt => {
-                    prompt.visible = prompt.name.toLowerCase().indexOf(searchValue) > -1;
-                    if (prompt.visible) {
-                        category.visible = true;
-                        category.expanded = true;
+                category['prompts'].forEach(prompt => {
+                    if (prompt.id == promptElement.id) {
+                        prompt.expanded = !prompt.expanded;
                     }
                 })
             });
-
             render();
         }
     </script>
@@ -77,10 +102,19 @@
         }
 
         .child-node {
+            cursor: pointer;
             font-size: 1.2em;
             padding: 10px;
             background-color: #f9f9f9;
             border-bottom: 1px solid #ccc;
+        }
+        .text-node {
+            cursor: pointer;
+            font-size: 1em;
+            padding: 20px;
+            background-color: #f9f9f9;
+            border: 1px solid #ccc;
+            margin-bottom:20px;
         }
 
         .fa-arrow-right {
@@ -112,12 +146,17 @@
     <script id="node-template" type="text/template">
         {{#nodes}}
             <div id="{{id}}" class="parent-node" style="display:{{#visible}}block{{/visible}} {{^visible}}none{{/visible}}" onclick="toggleChildren(this)">
-                <i class="fa fa-arrow-right"></i> {{name}}
+                <i class="fa fa-arrow-right"></i> {{name}} <span style='padding-right:20px;float:right'>({{count}})<span>
             </div>
             {{#prompts}}
-                <div class="child-node" style="display:{{#visible}}block{{/visible}} {{^visible}}none{{/visible}}">
-                    <i class="fa fa-arrow-right"></i> {{name}}
+                <div id="{{id}}" class="child-node" style="display:{{#visible}}block{{/visible}} {{^visible}}none{{/visible}}" onclick="toggleText(this)">
+                    <i class="fa fa-arrow-right"></i> {{name}} 
+                    <span style='padding-right:20px;float:right'><button class="btn btn-light">{{^expanded}}show{{/expanded}}{{#expanded}}hide{{/expanded}}</button><span>
                 </div>
+                <div id="text_{{id}}" class="text-node" style="display:{{#expanded}}block{{/expanded}} {{^expanded}}none{{/expanded}}" onclick="copyText(this)">
+                    <span>{{text}}</span>
+                </div>
+
             {{/prompts}}
         {{/nodes}}
     </script>
