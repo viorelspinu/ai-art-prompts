@@ -34,7 +34,10 @@
         function toggleChildren(node) {
             var newVisibleState = !data[node.id].expanded;
             data[node.id].expanded = newVisibleState;
-            data[node.id].prompts.forEach(prompt => prompt.visible = newVisibleState);
+            data[node.id].prompts.forEach(prompt => {
+                prompt.visible = newVisibleState;
+                prompt.expanded = false;
+            });
             render();
         }
 
@@ -50,14 +53,23 @@
             if (searchValue) {
                 data.forEach(category => {
                     category.visible = false;
-                    category.prompts.forEach(prompt => {
-                        prompt.visible = prompt.name.toLowerCase().indexOf(searchValue) > -1;
-                        prompt.expanded = false;
-                        if (prompt.visible) {
-                            category.visible = true;
-                            category.expanded = true;
-                        }
-                    })
+                    if (category['name'].toLowerCase().indexOf(searchValue) > -1) {
+                        category.visible = true;
+                        category.expanded = true;
+                        category.prompts.forEach(prompt => {
+                            prompt.visible = true;
+                            prompt.expanded = false;
+                        })
+                    } else {
+                        category.prompts.forEach(prompt => {
+                            prompt.visible = prompt.name.toLowerCase().indexOf(searchValue) > -1;
+                            prompt.expanded = false;
+                            if (prompt.visible) {
+                                category.visible = true;
+                                category.expanded = true;
+                            }
+                        })
+                    }
                 });
             } else {
                 data.forEach(category => {
@@ -84,7 +96,7 @@
             render();
         }
 
-        function copyText(promptElement){
+        function copyText(promptElement) {
             var promptId = promptElement.id.replace("text_", "");
             var text = null;
             data.forEach(category => {
@@ -123,13 +135,14 @@
             background-color: #f9f9f9;
             border-bottom: 1px solid #ccc;
         }
+
         .text-node {
             cursor: pointer;
             font-size: 1em;
             padding: 20px;
-            background-color: #f9f9f9;
+            background-color: #FFF;
             border: 1px solid #ccc;
-            margin-bottom:20px;
+            margin-bottom: 20px;
         }
 
         .fa-arrow-right {
