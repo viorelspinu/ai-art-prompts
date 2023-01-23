@@ -50,7 +50,7 @@
             border: 1px solid #0092dd;
             border-radius: 4px;
             margin-bottom: 10px;
-            width: 50em;
+            width: 40em;
         }
 
         .input-box {
@@ -211,13 +211,13 @@
 </head>
 
 <body style='background:#EEE;;padding:0px'>
+    <div style="padding-left:20px;padding-top:15px;color:#777"> Thanks to the wonderful <a target="_blank" href='https://github.com/f/awesome-chatgpt-prompts'>awesome-chatgpt-prompts</a> project for the prompt data.</div>    
     <div style="padding-left:20px" class="search-container">
-        <input type="text" id="searchInput" onkeyup="filterNodes()" placeholder="Search for a node...">
-        <button class="btn btn-light" onclick="resetSearch()">reset</button>
+        <input type="text" id="searchInput" onkeyup="filterNodes()" placeholder="Search for a prompt...">
+        <button class="btn btn-light" onclick="resetSearch()">reset</button>        
     </div>
+    <div style='margin-top:30px;margin-left:0xp;background:#FFF;padding-left:30px;' id="node-container"></div>
     
-    <div style='margin-top:30px;margin-left:0xp;background:#FFF;padding:20px;' id="node-container"></div>
-
     <script id="node-template" type="text/template">
         {{#nodes}}
             <div id="{{id}}" class="parent-node" style="display:{{#visible}}block{{/visible}} {{^visible}}none{{/visible}}" onclick="toggleChildren(this)">
