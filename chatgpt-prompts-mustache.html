@@ -52,6 +52,7 @@
                     category.visible = false;
                     category.prompts.forEach(prompt => {
                         prompt.visible = prompt.name.toLowerCase().indexOf(searchValue) > -1;
+                        prompt.expanded = false;
                         if (prompt.visible) {
                             category.visible = true;
                             category.expanded = true;
@@ -80,6 +81,19 @@
                 })
             });
             render();
+        }
+
+        function copyText(promptElement){
+            var promptId = promptElement.id.replace("text_", "");
+            var text = null;
+            data.forEach(category => {
+                category['prompts'].forEach(prompt => {
+                    if (prompt.id == promptId) {
+                        text = prompt['text'];
+                    }
+                })
+            });
+            navigator.clipboard.writeText(text);
         }
     </script>
 
