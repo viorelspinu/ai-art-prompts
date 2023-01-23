@@ -57,6 +57,7 @@
             background: #FFFFFF;
             border: 1px solid #BBB !important;
             margin-left: 5px;
+            margin-top:5px;
         }
     </style>
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
@@ -64,11 +65,9 @@
     <script src="prompts.js"></script>
     <script>
         let data = [];
-        var i = 0;
-        prompts.forEach(prompt => {
-            prompt['id'] = i;
+        prompts.forEach((prompt, index) => {
+            prompt['id'] = index;
             prompt.expanded = false;
-            i++;
             var existing_category = data.find(d => d['name'] == prompt['category']);
             if (existing_category) {
                 existing_category['prompts'].push(prompt);
