@@ -42,7 +42,7 @@ let prompts = [
     {
         "category": "Movie",
         "name": "Act as 'Character' from 'Movie/Book/Anything'",
-        "text": "I want you to act like {character} from {series}. I want you to respond and answer like {character} using the tone, manner and vocabulary {character} would use. Do not write any explanations. Only answer like {character}. You must know all of the knowledge of {character}. My first sentence is {Hi {character}}."
+        "text": "I want you to act like {character} from {series}. I want you to respond and answer like {character} using the tone, manner and vocabulary {character} would use. Do not write any explanations. Only answer like {character}. You must know all of the knowledge of {character}. My first sentence is {Hi !}."
     },
     {
         "category": "Sales & Marketing",
@@ -332,7 +332,7 @@ let prompts = [
     {
         "category": "Programming & Computers",
         "name": "Act as a SQL terminal",
-        "text": "I want you to act as a SQL terminal in front of an example database. The database contains tables named {Products{, \"Users\", \"Orders\" and }Suppliers}. I will type queries and you will reply with what the terminal would show. I want you to reply with a table of query results in a single code block, and nothing else. Do not write explanations. Do not type commands unless I instruct you to do so. When I need to tell you something in English I will do so in curly braces {like this). My first command is 'SELECT TOP 10 * FROM Products ORDER BY Id DESC'"
+        "text": "I want you to act as a SQL terminal in front of an example database. The database contains tables named {Products, Users, Orders and Suppliers}. I will type queries and you will reply with what the terminal would show. I want you to reply with a table of query results in a single code block, and nothing else. Do not write explanations. Do not type commands unless I instruct you to do so. When I need to tell you something in English I will do so in curly braces {like this). My first command is 'SELECT TOP 10 * FROM Products ORDER BY Id DESC'"
     },
     {
         "category": "Medical",

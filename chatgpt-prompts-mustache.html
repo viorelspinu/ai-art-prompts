@@ -31,6 +31,36 @@
             data.count = data['prompts'].length;
         })
 
+        data.forEach((data, dataIndex) => {
+            data.prompts.forEach((prompt, promptIndex) => {
+                let text = prompt['text'];
+                let matches = text.match(/{(?!like this)(.*?)}/g);
+                let htmlText = text;
+                let templateText = text;
+                if (matches) {
+                    matches.forEach((match, matchIndex) => {
+                        let inputId = "input_" + dataIndex + "_" + promptIndex + "_" + matchIndex;
+                        let onClick = `onkeyup="fillInTemplate(this,'${inputId}')"`
+                        let htmlString = "<input " + onClick + " class='" + inputId + "' style='text-align:center' type='text' size='" + Math.round(match.length / 1.1) + "' value='" + match.slice(1, -1) + "'/>";
+                        let replaceTag = "@tag_" + dataIndex + "_" + promptIndex + "_" + matchIndex + "@";
+                        htmlText = htmlText.replaceAll(match, htmlString);
+                        templateText = templateText.replaceAll(match, replaceTag);
+                    });
+                }
+                prompt['htmlText'] = htmlText;
+                prompt['templateText'] = templateText;
+            });
+        })
+
+        function fillInTemplate(inputElement, inputId) {
+            let classId = '.' + inputId;
+            let value = inputElement.value;
+
+            $(classId).each(function() {
+                this.value = value;
+            });
+        }
+
         function toggleChildren(node) {
             var newVisibleState = !data[node.id].expanded;
             data[node.id].expanded = newVisibleState;
@@ -97,16 +127,23 @@
         }
 
         function copyText(promptElement) {
-            var promptId = promptElement.id.replace("text_", "");
-            var text = null;
+            let promptId = promptElement.id.replace("text_", "");
+            let templateText = null;
             data.forEach(category => {
                 category['prompts'].forEach(prompt => {
                     if (prompt.id == promptId) {
-                        text = prompt['text'];
+                        templateText = prompt['templateText'];
                     }
                 })
             });
-            navigator.clipboard.writeText(text);
+            let matches = templateText.match(/@(.*?)@/g);
+            matches.forEach(match =>{
+                let id = match.replaceAll("@", "").replaceAll("tag_", "");
+                let inputClass = ".input_" + id;
+                let value = $(inputClass).val();
+                templateText = templateText.replace(match, value);
+            });
+            navigator.clipboard.writeText(templateText);
         }
     </script>
 
@@ -163,6 +200,12 @@
             margin-bottom: 10px;
             width: 50em;
         }
+
+        .input-box {
+            background: #FFFEF7;
+            border: 1px solid #DDD;
+            margin-left: 5px;
+        }
     </style>
 </head>
 
@@ -186,7 +229,7 @@
                         
                 </div>
                 <div id="text_{{id}}" class="text-node" style="display:{{#expanded}}block{{/expanded}} {{^expanded}}none{{/expanded}}" onclick="copyText(this)">
-                    <span>{{text}}</span>
+                    <span>{{{htmlText}}}</span>
                 </div>
 
             {{/prompts}}
