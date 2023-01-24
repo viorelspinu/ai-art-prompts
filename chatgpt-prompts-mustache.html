@@ -117,24 +117,15 @@
         })
 
         function getPromptById(promptId) {
-            let activePrompt = null;
-            data.forEach(category => {
-                category['prompts'].forEach(prompt => {
-                    if (prompt.id == promptId) {
-                        activePrompt = prompt;
-                    }
-                })
-            });
-            return activePrompt;
+            return prompts[promptId];
         }
 
         function fillInTemplate(inputElement, inputId, promptId) {
             let classId = '.' + inputId;
             let value = inputElement.value;
 
-            let templateText = null;
             let activePrompt = getPromptById(promptId);
-            templateText = activePrompt['templateText'];
+            let templateText = activePrompt['templateText'];
             let matches = templateText.match(/@(.*?)@/g);
             matches.forEach(match => {
                 let id = match.replaceAll("@", "").replaceAll("tag_", "");
