@@ -11,6 +11,8 @@
             border-bottom: 1px solid #ccc;
             padding: 10px;
             background: #FFF;
+            white-space: nowrap;
+            color:#0092aa;
         }
 
         .parent-node:hover {
@@ -20,9 +22,12 @@
         .child-node {
             cursor: pointer;
             font-size: 1.1em;
-            padding: 10px;
+            padding-left: 10px;
             background-color: #FFF;
             border-bottom: 1px solid #ccc;
+            white-space: nowrap;
+            vertical-align: middle;
+            color:#555;
         }
 
         .text-node {
@@ -53,14 +58,10 @@
             width: 50%;
         }
 
-        .input-box {
-            background: #FFFFFF;
-            border: 1px solid #BBB !important;
+        .input-box {            
             margin-left: 5px;
-            margin-top: 5px;
             width: 60%;
             padding-left: 8px;
-            color: #555;
         }
     </style>
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
@@ -87,7 +88,7 @@
             data.prompts.forEach(prompt => prompt.visible = false);
             data.count = data['prompts'].length;
         })
-
+        
         data.forEach((data, dataIndex) => {
             data.prompts.forEach((prompt, promptIndex) => {
                 let text = prompt['text'];
@@ -101,7 +102,7 @@
                         if (!processedMatches.includes(match)) {
                             let inputId = "input_" + dataIndex + "_" + promptIndex + "_" + matchIndex;
                             let onKeyUp = `onkeyup="fillInTemplate(this,'${inputId}', '${prompt.id}')"`
-                            let htmlString = "<input " + onKeyUp + " class='" + inputId + " input-box' type='text' value='" + match.slice(1, -1) + "'/>";
+                            let htmlString = "<input onfocus='this.select();' " + onKeyUp + " class='" + inputId + " form-control input-box' type='text' value='" + match.slice(1, -1) + "'/>";
                             inputHtml += htmlString + "<br>";
                             let replaceTag = "@tag_" + dataIndex + "_" + promptIndex + "_" + matchIndex + "@";
                             templateText = templateText.replaceAll(match, replaceTag);
@@ -218,26 +219,27 @@
 </head>
 
 <body style='background:#EEE;;padding:0px'>
-    <div style="padding-left:20px;padding-top:15px;color:#777"> Thanks to the wonderful <a target="_blank"
+    <div style="padding-top:15px;color:#777"> Thanks to the wonderful <a target="_blank"
             href='https://github.com/f/awesome-chatgpt-prompts'>awesome-chatgpt-prompts</a> project for the prompt data.
     </div>
     <div style="padding-left:20px" class="search-container">
         <input type="text" id="searchInput" onkeyup="filterNodes()" placeholder="Search for a prompt...">
         <button class="btn btn-light" onclick="resetSearch()">reset</button>
     </div>
-    <div style='margin-top:30px;margin-left:0xp;background:#FFF;padding-left:30px;' id="node-container"></div>
+    <div style='margin-top:30px;margin-left:0xp;background:#FFF;' id="node-container"></div>
 
     <script id="node-template" type="text/template">
+        <div>
         {{#nodes}}
             <div id="{{id}}" class="parent-node" style="display:{{#visible}}block{{/visible}} {{^visible}}none{{/visible}}" onclick="toggleChildren(this)">
                 <span>{{#expanded}}-{{/expanded}} {{^expanded}}+{{/expanded}}</span>                
-                {{name}} <span style='padding-right:20px;float:right;color:#888'>({{count}})<span>
+                {{name}} <span style='float:right;color:#888'>({{count}})<span>
             </div>
             {{#prompts}}
                 <div id="{{id}}" class="child-node" style="display:{{#visible}}block{{/visible}} {{^visible}}none{{/visible}}" onclick="toggleText(this)">
                     
-                    <span style='padding-right:20px;'>
-                        <button class="btn btn-link">{{^expanded}}show{{/expanded}}{{#expanded}}hide{{/expanded}}</button>
+                    <span style='padding-right:2px;'>
+                        <span style="margin-top:0px; padding-top:0px;font-size:1.2em;" class="">{{^expanded}}+{{/expanded}}{{#expanded}}-{{/expanded}}</span>
                     </span>
                     {{name}} 
                         
@@ -257,6 +259,7 @@
 
             {{/prompts}}
         {{/nodes}}
+        </div>
     </script>
     <script>
         render();
